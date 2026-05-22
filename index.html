@@ -34,7 +34,7 @@ nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px sol
 .about-subtitle{font-size:14px;color:var(--muted);margin-bottom:0.5rem}
 .about-badge{display:inline-block;font-size:10.5px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);padding:3px 10px;border-radius:3px}
 .about-bio-grid{display:grid;grid-template-columns:220px 1fr;gap:2.5rem;align-items:start;margin:2.5rem 0}
-.about-photo{width:220px;aspect-ratio:3/4;object-fit:cover;border-radius:4px;border:1px solid var(--border);background:var(--bg2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;text-align:center;padding:2rem}
+.about-photo{width:220px;aspect-ratio:3/4;object-fit:contain;border-radius:4px;border:1px solid var(--border);background:var(--bg2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;text-align:center;padding:2rem}
 .about-text p{margin-bottom:1.1rem;color:var(--text);font-size:15px;line-height:1.78}
 .about-text p:last-child{margin-bottom:0}
 .contact-grid{display:grid;grid-template-columns:auto 1fr;gap:6px 1.5rem;align-items:baseline;margin-top:1.5rem}
@@ -114,7 +114,7 @@ nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px sol
 .funding-source{font-size:11.5px;color:var(--accent);white-space:nowrap;text-align:right;padding-top:2px}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
 .gallery-item-wrap img{width:100%;display:block;border-radius:4px;transition:transform 0.3s,filter 0.3s}
-.gallery-img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;background:var(--bg2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;border:1px solid var(--border)}
+.gallery-img{width:100%;aspect-ratio:4/3;object-fit:contain;border-radius:4px;background:var(--bg2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;border:1px solid var(--border)}
 .gallery-caption{margin-top:0.6rem}
 .gallery-caption h4{font-size:13.5px;font-weight:500;margin-bottom:3px}
 .gallery-caption p{font-size:12px;color:var(--muted);font-family:monospace}
@@ -161,7 +161,7 @@ footer a{color:var(--muted)}
 .carousel-slides{overflow:hidden;border-radius:4px}
 .carousel-slide{display:none;width:100%}
 .carousel-slide.active{display:block}
-.carousel-slide-img{width:100%;height:380px;object-fit:cover;background:var(--bg2);border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;flex-direction:column;gap:0.5rem}
+.carousel-slide-img{width:100%;height:auto;background:var(--bg2);border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;flex-direction:column;gap:0.5rem}
 .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.85);border:none;cursor:pointer;width:36px;height:36px;border-radius:50%;font-size:14px;display:flex;align-items:center;justify-content:center;color:#333;transition:background 0.2s;z-index:2}
 [data-theme="dark"] .carousel-btn{background:rgba(40,40,38,0.85);color:#ccc}
 .carousel-btn:hover{background:rgba(255,255,255,1)}
@@ -433,8 +433,7 @@ footer a{color:var(--muted)}
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .gcard:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,0.14); }
-.gcard img { width: 100%; display: block; transition: transform 0.45s ease; }
-.gcard:hover img { transform: scale(1.05); }
+.gcard img { width: 100%; height: auto; display: block; }
 
 /* Hover overlay */
 .gcard-overlay {
@@ -499,6 +498,37 @@ footer a{color:var(--muted)}
 }
 [data-theme="dark"] .gcard { background: #1e1e1c; }
 
+/* ══════════ COLLABORATORS PAGE ══════════ */
+.collab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+@media(max-width:900px){ .collab-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:500px){ .collab-grid { grid-template-columns: 1fr; } }
+.collab-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem 1.25rem 1rem;
+  background: var(--bg2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.collab-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.09); transform: translateY(-3px); }
+.collab-name { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.35; }
+.collab-inst { font-size: 12.5px; color: var(--muted); line-height: 1.45; flex: 1; }
+.collab-links { margin-top: 0.65rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.collab-btn {
+  font-size: 11.5px; font-weight: 500; padding: 4px 11px;
+  border: 1px solid var(--accent); border-radius: 3px;
+  color: var(--accent); text-decoration: none;
+  transition: background 0.18s, color 0.18s;
+}
+.collab-btn:hover { background: var(--accent); color: #fff; }
+
 </style>
 </head>
 <body>
@@ -514,6 +544,7 @@ footer a{color:var(--muted)}
     <a href="#" onclick="showPage('service');toggleMobileMenu();return false">Service</a>
     <a href="#" onclick="showPage('awards');toggleMobileMenu();return false">Awards</a>
     <a href="#" onclick="showPage('gallery');toggleMobileMenu();return false">Gallery</a>
+    <a href="#" onclick="showPage('collaborators');toggleMobileMenu();return false">Collaborators</a>
   </div>
   <a class="nav-brand" href="#" onclick="return showPage('about')"><strong>Refat</strong> <span>Rakib</span></a>
   <ul class="nav-links" role="menubar">
@@ -524,6 +555,7 @@ footer a{color:var(--muted)}
     <li><a href="#" onclick="return showPage('service')" id="nav-service">Service</a></li>
     <li><a href="#" onclick="return showPage('awards')" id="nav-awards">Awards</a></li>
     <li><a href="#" onclick="return showPage('gallery')" id="nav-gallery">Gallery</a></li>
+    <li><a href="#" onclick="return showPage('collaborators')" id="nav-collaborators">Collaborators</a></li>
   </ul>
   <div class="theme-toggle" id="theme-toggle">
     <button id="btn-light" class="active" onclick="setTheme('light')" title="Light mode">&#9728;</button>
@@ -550,7 +582,7 @@ footer a{color:var(--muted)}
 
     <!-- Photo: tall portrait left side -->
     <div style="flex-shrink:0">
-      <img src="" alt="Md Refat Jahan Rakib"
+      <img src="images/imgPROFILE.jpg" alt="Md Refat Jahan Rakib"
         style="width:240px;height:auto;display:block;border-radius:3px;border:1px solid var(--border)">
     </div>
 
@@ -693,55 +725,55 @@ footer a{color:var(--muted)}
     <div class="carousel-wrap">
       <div class="carousel-slides" id="carousel-slides-inner">
         <div class="carousel-slide active">
-          <img src="" data-img-id="imgGAL0" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL0" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
         <div class="carousel-slide">
-          <img src="" data-img-id="imgGAL1" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL1" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
         <div class="carousel-slide">
-          <img src="" data-img-id="imgGAL2" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL2" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
         <div class="carousel-slide">
-          <img src="" data-img-id="imgGAL3" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL3" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
         <div class="carousel-slide">
-          <img src="" data-img-id="imgGAL4" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL4" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
         <div class="carousel-slide">
-          <img src="" data-img-id="imgGAL5" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL5" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
         <div class="carousel-slide">
-          <img src="" data-img-id="imgGAL6" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL6" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
         <div class="carousel-slide">
-          <img src="" data-img-id="imgGAL7" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL7" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
         <div class="carousel-slide">
-          <img src="" data-img-id="imgGAL8" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL8" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
         <div class="carousel-slide">
-          <img src="" data-img-id="imgGAL9" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL9" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
         <div class="carousel-slide">
-          <img src="" data-img-id="imgGAL10" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL10" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
         <div class="carousel-slide">
-          <img src="" data-img-id="imgGAL11" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL11" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
         <div class="carousel-slide">
-          <img src="" data-img-id="imgGAL12" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL12" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
         <div class="carousel-slide">
-          <img src="" data-img-id="imgGAL13" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL13" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
         <div class="carousel-slide">
-          <img src="" data-img-id="imgGAL14" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL14" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
         <div class="carousel-slide">
-          <img src="" data-img-id="imgGAL3" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL3" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
         <div class="carousel-slide">
-          <img src="" data-img-id="imgGAL4" alt="Research highlight" loading="lazy" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block">
+          <img src="" data-img-id="imgGAL4" alt="Research highlight" loading="lazy" style="width:100%;height:auto;display:block;border-radius:4px">
         </div>
       </div>
       <button class="carousel-btn carousel-btn-prev" onclick="carouselMove(-1)">&#8249;</button>
@@ -1280,7 +1312,14 @@ footer a{color:var(--muted)}
         <div class="award-title">Peer Review Service</div>
         <div class="award-org">Verified reviewer for 40+ international journals</div>
       </div>
-      <span class<div id="page-gallery" class="site-page">
+      <span class="award-year-tag">2023</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- GALLERY -->
+<div id="page-gallery" class="site-page">
 <div class="gallery-page">
 
   <h1 style="font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:400;margin-bottom:0.4rem">Gallery</h1>
@@ -1288,14 +1327,15 @@ footer a{color:var(--muted)}
   <hr style="border:none;border-top:1px solid var(--border);margin-bottom:1.75rem">
 
   <div class="gallery-filters">
-    <button class="gfilter active" onclick="glFilter('all',this)">All <span style="opacity:0.55;font-weight:400">15</span></button>
+    <button class="gfilter active" onclick="glFilter('all',this)">All <span style="opacity:0.55;font-weight:400">16</span></button>
     <button class="gfilter" onclick="glFilter('Conference',this)">Conference</button>
     <button class="gfilter" onclick="glFilter('Field Work',this)">Field Work</button>
     <button class="gfilter" onclick="glFilter('International',this)">International</button>
     <button class="gfilter" onclick="glFilter('Lab & Research',this)">Lab & Research</button>
     <button class="gfilter" onclick="glFilter('Networking',this)">Networking</button>
+    <button class="gfilter" onclick="glFilter('Milestone',this)">Milestone</button>
   </div>
-  <p class="gallery-count" id="gcount">Showing 15 photos</p>
+  <p class="gallery-count" id="gcount">Showing 16 photos</p>
 
   <div class="gallery-masonry">
     <div class="gcard" data-cat="Conference" data-idx="0" onclick="glOpen(0)" title="AGU 2024 — Conference">
@@ -1418,6 +1458,14 @@ footer a{color:var(--muted)}
         <div class="gcard-sub"></div>
       </div>
     </div>
+    <div class="gcard" data-cat="Milestone" data-idx="15" onclick="glOpen(15)" title="Graduation Ceremony">
+      <span class="gcard-badge">Milestone</span>
+      <img id="gcard-img-15" src="" data-img-id="imgGAL15" alt="Graduation Ceremony" loading="lazy">
+      <div class="gcard-overlay">
+        <div class="gcard-title">Graduation Ceremony</div>
+        <div class="gcard-sub"></div>
+      </div>
+    </div>
   </div>
 
 </div>
@@ -1433,6 +1481,174 @@ footer a{color:var(--muted)}
   <div class="glightbox-counter" id="glightbox-counter"></div>
 </div>
 
+</div>
+
+<!-- COLLABORATORS -->
+<div id="page-collaborators" class="site-page">
+<div class="page">
+  <h1 style="font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:400;margin-bottom:0.4rem">Collaborators</h1>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:0.5rem">Research collaborators and co-authors across institutions worldwide</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:1.75rem">
+    <a href="https://www.scopus.com/authid/detail.uri?authorId=57221225845" target="_blank" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)">View full co-author network on Scopus &rarr;</a>
+  </p>
+  <hr style="border:none;border-top:1px solid var(--border);margin-bottom:1.75rem">
+
+  <div class="collab-grid">
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Dr. Yeasmin Nahar Jolly</div>
+      <div class="collab-inst">Bangladesh Atomic Energy Commission</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=_ZWXprsAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">M Belal Hossain, PhD</div>
+      <div class="collab-inst">Fisheries and Marine Science, Noakhali Science and Technology University</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=2GZfQjkAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Gabriel Enrique De-la-Torre</div>
+      <div class="collab-inst">Universidad San Ignacio de Loyola</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=Mc00G90AAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Mayeen Uddin Khandaker</div>
+      <div class="collab-inst">Professor, Sunway University, Malaysia</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=Xk8wGTgAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Rakesh Kumar</div>
+      <div class="collab-inst">Auburn University, United States</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=sixj6u8AAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Aniruddha Sarker</div>
+      <div class="collab-inst">Assistant Professor, Bangladesh Agricultural University (PhD, KNU, Korea)</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=lcvcCqEAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Diana Carolina Dioses-Salinas</div>
+      <div class="collab-inst">Universidad San Ignacio de Loyola</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=tvCBeDIAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Tony R Walker</div>
+      <div class="collab-inst">Professor, School for Resource and Environmental Studies, Dalhousie University</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=p2A7JcIAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Prabhakar Sharma</div>
+      <div class="collab-inst">Nagaland University, Meriema, Kohima, Nagaland, India</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=lCoSrI8AAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Enyoh Christian Ebere, PhD</div>
+      <div class="collab-inst">Research Fellow, Graduate School of Science and Engineering, Saitama University, Japan</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=YD7zViwAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">D A Bradley</div>
+      <div class="collab-inst">Professor of Applied Nuclear Physics, Sunway University &amp; Surrey University</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=RxgkLV8AAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Sina Dobaradaran</div>
+      <div class="collab-inst">Bushehr University of Medical Sciences &amp; Duisburg Essen University</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=7CJkTBcAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Qiming Jimmy Yu</div>
+      <div class="collab-inst">School of Engineering and Built Environment, Griffith University</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=oGzPGiQAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Minh-Ky NGuyen</div>
+      <div class="collab-inst">Nong Lam University of Ho Chi Minh City</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=-jmYmvwAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Chitsan Lin</div>
+      <div class="collab-inst">National Kaohsiung University of Science and Technology</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=e5VMkigAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Md Abdullah Al Masud, PhD</div>
+      <div class="collab-inst">Research Engineer, The University of Alabama</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=5PkBmLEAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Michael (Mike) Elliott</div>
+      <div class="collab-inst">Emeritus Professor of Estuarine &amp; Coastal Sciences, University of Hull, UK</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=lkQOy_UAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Win Cowger</div>
+      <div class="collab-inst">Executive Director, Moore Institute for Plastic Pollution Research</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=lHPVseIAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+    <div class="collab-card reveal">
+      <div class="collab-name">Prosun Bhattacharya</div>
+      <div class="collab-inst">Professor, KTH Royal Institute of Technology, Sweden</div>
+      <div class="collab-links">
+        <a class="collab-btn" href="https://scholar.google.com/citations?user=dhacbKgAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      </div>
+    </div>
+
+  </div>
+</div>
 </div>
 
 <footer>
@@ -1541,7 +1757,7 @@ function toggleMobileMenu(){
 
 // 3. PAGE NAVIGATION
 function showPage(name){
-  var T={about:'About',publications:'Publications',projects:'Projects',experience:'Experience',service:'Service',awards:'Awards',gallery:'Gallery'};
+  var T={about:'About',publications:'Publications',projects:'Projects',experience:'Experience',service:'Service',awards:'Awards',gallery:'Gallery',collaborators:'Collaborators'};
   document.title='Md Refat Jahan Rakib'+(T[name]?' — '+T[name]:'');
   document.querySelectorAll('.site-page').forEach(function(p){p.classList.remove('active');});
   document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.remove('active');});
@@ -1653,7 +1869,7 @@ function revealOnScroll(){
 window.addEventListener('scroll',revealOnScroll);
 
 // 11. GALLERY
-var GDATA=[{id:'imgGAL0',title:'AGU 2024 — Conference',sub:'American Geophysical Union, Washington D.C.'},{id:'imgGAL1',title:'AGU 2024 — Poster Presentation',sub:'Microplastic contamination in river-dominated estuary'},{id:'imgGAL2',title:'ACS Fall 2024 — Poster Presentation',sub:''},{id:'imgGAL3',title:'BORI Field Survey — Cox',sub:''},{id:'imgGAL4',title:'NYC Microplastics Symposium',sub:''},{id:'imgGAL5',title:'Research Symposium — UTRGV',sub:''},{id:'imgGAL6',title:'Certificate of Completion — Chinese Academy of Sciences',sub:'International course on Environmental Microorganisms, China'},{id:'imgGAL7',title:'International Training — Chinese Academy of Sciences',sub:''},{id:'imgGAL8',title:'Field Sampling — Bay of Bengal',sub:''},{id:'imgGAL9',title:'AGU 2024 — Washington D.C.',sub:''},{id:'imgGAL10',title:'Beach Cleanup — Surfrider Foundation at UTRGV',sub:''},{id:'imgGAL11',title:'Laboratory Work — UTRGV',sub:''},{id:'imgGAL12',title:'AGU 2024 — Poster Session',sub:''},{id:'imgGAL13',title:'AGU 2024 — Poster Session',sub:''},{id:'imgGAL14',title:'AGU 2024 — Poster Session',sub:''}];
+var GDATA=[{id:'imgGAL0',title:'AGU 2024 — Conference',sub:'American Geophysical Union, Washington D.C.'},{id:'imgGAL1',title:'AGU 2024 — Poster Presentation',sub:'Microplastic contamination in river-dominated estuary'},{id:'imgGAL2',title:'ACS Fall 2024 — Poster Presentation',sub:''},{id:'imgGAL3',title:'BORI Field Survey — Cox',sub:''},{id:'imgGAL4',title:'NYC Microplastics Symposium',sub:''},{id:'imgGAL5',title:'Research Symposium — UTRGV',sub:''},{id:'imgGAL6',title:'Certificate of Completion — Chinese Academy of Sciences',sub:'International course on Environmental Microorganisms, China'},{id:'imgGAL7',title:'International Training — Chinese Academy of Sciences',sub:''},{id:'imgGAL8',title:'Field Sampling — Bay of Bengal',sub:''},{id:'imgGAL9',title:'AGU 2024 — Washington D.C.',sub:''},{id:'imgGAL10',title:'Beach Cleanup — Surfrider Foundation at UTRGV',sub:''},{id:'imgGAL11',title:'Laboratory Work — UTRGV',sub:''},{id:'imgGAL12',title:'AGU 2024 — Poster Session',sub:''},{id:'imgGAL13',title:'AGU 2024 — Poster Session',sub:''},{id:'imgGAL14',title:'AGU 2024 — Poster Session',sub:''},{id:'imgGAL15',title:'Graduation Ceremony',sub:''}];
 var gVisible=GDATA.map(function(_,i){return i;});
 var gLbIdx=0;
 
@@ -1743,6 +1959,7 @@ document.addEventListener('DOMContentLoaded',function(){
   <img id="imgGAL12" src="images/imgGAL12.jpg">
   <img id="imgGAL13" src="images/imgGAL13.jpg">
   <img id="imgGAL14" src="images/imgGAL14.jpg">
+  <img id="imgGAL15" src="images/imgGAL15.jpg">
 </div>
 </body>
 </html>
