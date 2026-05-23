@@ -292,7 +292,7 @@ footer a{color:var(--muted)}
 .skill-item { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 0.6rem 1rem; font-size: 13px; color: var(--text); }
 
 /* Instrument & software cards */
-.skill-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 0.85rem; text-align: center; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+.skill-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 0.85rem; text-align: center; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; opacity:1; }
 .skill-card:hover { border-color: var(--accent); box-shadow: 0 4px 14px rgba(0,0,0,0.08); transform: translateY(-2px); }
 .skill-card-icon { font-size: 2rem; color: var(--accent); margin-bottom: 0.55rem; height: 2.4rem; display: flex; align-items: center; justify-content: center; }
 .skill-card-name { font-weight: 600; font-size: 13px; margin-bottom: 0.35rem; color: var(--text); }
@@ -677,32 +677,32 @@ footer a{color:var(--muted)}
     <div class="sec-label" style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem">Analytical Instrumentation</div>
     <hr style="border:none;border-top:1px solid var(--border);margin-bottom:0">
     <div class="instrument-grid" style="margin-top:1rem">
-      <div class="skill-card reveal">
+      <div class="skill-card">
         <div class="skill-card-icon"><i class="fas fa-vials"></i></div>
         <div class="skill-card-name">AA500 Nutrient Analyzer</div>
         <div class="skill-card-desc">Automated colorimetric analysis of dissolved nutrients (NO₃⁻, PO₄³⁻, SiO₂) in water samples.</div>
       </div>
-      <div class="skill-card reveal">
+      <div class="skill-card">
         <div class="skill-card-icon"><i class="fas fa-circle-dot"></i></div>
         <div class="skill-card-name">Mastersizer</div>
         <div class="skill-card-desc">Laser diffraction particle size analysis for microplastic and sediment size characterization.</div>
       </div>
-      <div class="skill-card reveal">
+      <div class="skill-card">
         <div class="skill-card-icon"><i class="fas fa-snowflake"></i></div>
         <div class="skill-card-name">Cryomill</div>
         <div class="skill-card-desc">Cryogenic grinding of biological and environmental samples for homogeneous chemical extraction.</div>
       </div>
-      <div class="skill-card reveal">
+      <div class="skill-card">
         <div class="skill-card-icon"><i class="fas fa-atom"></i></div>
         <div class="skill-card-name">ICP-MS</div>
         <div class="skill-card-desc">Inductively coupled plasma mass spectrometry for trace and ultra-trace metal quantification in environmental matrices.</div>
       </div>
-      <div class="skill-card reveal">
+      <div class="skill-card">
         <div class="skill-card-icon"><i class="fas fa-flask"></i></div>
         <div class="skill-card-name">LC-MS</div>
         <div class="skill-card-desc">Liquid chromatography–mass spectrometry for identification of pharmaceutical and organic pollutants.</div>
       </div>
-      <div class="skill-card reveal">
+      <div class="skill-card">
         <div class="skill-card-icon"><i class="fas fa-fire-flame-curved"></i></div>
         <div class="skill-card-name">Pyro GC-MS</div>
         <div class="skill-card-desc">Pyrolysis gas chromatography–mass spectrometry for polymer-type identification in microplastics.</div>
@@ -715,27 +715,27 @@ footer a{color:var(--muted)}
     <div class="sec-label" style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem">Software &amp; Data Analysis</div>
     <hr style="border:none;border-top:1px solid var(--border);margin-bottom:0">
     <div class="software-grid" style="margin-top:1rem">
-      <div class="skill-card reveal">
+      <div class="skill-card">
         <div class="skill-card-icon" style="font-size:1.6rem;font-weight:800;font-family:monospace;color:var(--accent)">R</div>
         <div class="skill-card-name">R</div>
         <div class="skill-card-desc">Statistical computing, environmental modeling, and data visualization.</div>
       </div>
-      <div class="skill-card reveal">
+      <div class="skill-card">
         <div class="skill-card-icon"><i class="fab fa-python"></i></div>
         <div class="skill-card-name">Python</div>
         <div class="skill-card-desc">Data analysis, geospatial processing, and machine learning pipelines.</div>
       </div>
-      <div class="skill-card reveal">
+      <div class="skill-card">
         <div class="skill-card-icon"><i class="fas fa-chart-line"></i></div>
         <div class="skill-card-name">Origin Pro</div>
         <div class="skill-card-desc">Advanced scientific graphing, curve fitting, and statistical data analysis.</div>
       </div>
-      <div class="skill-card reveal">
+      <div class="skill-card">
         <div class="skill-card-icon"><i class="fas fa-map-location-dot"></i></div>
         <div class="skill-card-name">ArcGIS Pro</div>
         <div class="skill-card-desc">Spatial analysis, GIS mapping, and remote sensing of coastal and marine environments.</div>
       </div>
-      <div class="skill-card reveal">
+      <div class="skill-card">
         <div class="skill-card-icon"><i class="fas fa-chart-bar"></i></div>
         <div class="skill-card-name">GraphPad Prism</div>
         <div class="skill-card-desc">Biostatistics, nonlinear regression, and publication-quality scientific figures.</div>
@@ -1838,6 +1838,7 @@ function showPage(name){
   var nv=document.getElementById('nav-'+name);
   if(nv) nv.classList.add('active');
   window.scrollTo(0,0);
+  if(name==='publications') filterByType('all', document.querySelector('.pub-filter-btn'));
   setTimeout(revealOnScroll,100);
   return false;
 }
