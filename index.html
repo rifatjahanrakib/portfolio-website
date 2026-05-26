@@ -871,6 +871,45 @@ footer a{color:var(--muted)}
   </div>
 
 
+  <!-- ── RECENT POSTS (X / TWITTER) ── -->
+  <div style="margin-top:3.5rem">
+    <div class="sec-label" style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem">Recent Posts</div>
+    <hr style="border:none;border-top:1px solid var(--border);margin-bottom:1.25rem">
+    <div id="x-timeline-wrap" style="max-width:560px;border-radius:6px;overflow:hidden;border:1px solid var(--border)">
+      <a class="twitter-timeline"
+         href="https://twitter.com/refatjahanrakib"
+         data-width="560"
+         data-height="480"
+         data-tweet-limit="5"
+         data-chrome="noheader nofooter noborders transparent"
+         id="x-timeline-widget">Posts by @refatjahanrakib</a>
+    </div>
+    <p style="margin-top:0.6rem;font-size:12px;color:var(--muted)">
+      <a href="https://x.com/refatjahanrakib" target="_blank" style="color:var(--accent);text-decoration:none">View all on X &rarr;</a>
+    </p>
+  </div>
+  <script>
+  (function(){
+    var s = document.createElement('script');
+    s.src = 'https://platform.twitter.com/widgets.js';
+    s.async = true;
+    s.charset = 'utf-8';
+    document.head.appendChild(s);
+
+    // Sync widget theme with site theme toggle
+    function applyXTheme(theme) {
+      var el = document.getElementById('x-timeline-widget');
+      if (!el) return;
+      el.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
+      if (window.twttr && twttr.widgets) twttr.widgets.load(document.getElementById('x-timeline-wrap'));
+    }
+    var origSetTheme = window.setTheme;
+    window.setTheme = function(t) { if(origSetTheme) origSetTheme(t); applyXTheme(t); };
+    // Apply on load
+    applyXTheme(document.documentElement.getAttribute('data-theme') || 'light');
+  })();
+  </script>
+
   <!-- ── GET IN TOUCH ── -->
   <div style="margin-top:3.5rem">
     <div class="sec-label" style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem">Get in Touch</div>
