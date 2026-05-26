@@ -875,36 +875,62 @@ footer a{color:var(--muted)}
   <div style="margin-top:3.5rem">
     <div class="sec-label" style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem">Recent Posts</div>
     <hr style="border:none;border-top:1px solid var(--border);margin-bottom:1.25rem">
-    <div id="x-timeline-wrap" style="max-width:560px">
+
+    <!-- Live timeline — renders automatically once posts exist -->
+    <div id="x-timeline-wrap" style="max-width:560px;display:none">
       <a class="twitter-timeline"
          id="x-timeline-widget"
          data-width="560"
          data-height="500"
          data-chrome="noheader nofooter noborders"
          data-theme="light"
-         href="https://twitter.com/refatjahanrakib?ref_src=twsrc%5Etfw">Tweets by @refatjahanrakib</a>
+         href="https://twitter.com/refatjahanrakib?ref_src=twsrc%5Etfw"></a>
     </div>
-    <p style="margin-top:0.6rem;font-size:12px;color:var(--muted)">
-      <a href="https://x.com/refatjahanrakib" target="_blank" style="color:var(--accent);text-decoration:none">View all on X &rarr;</a>
-    </p>
+
+    <!-- Follow card — shown until the live timeline is available -->
+    <div id="x-follow-card" style="max-width:560px;border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem">
+      <div style="width:42px;height:42px;border-radius:8px;background:var(--bg2);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--border)">
+        <i class="fa-brands fa-x-twitter" style="font-size:20px;color:var(--text)"></i>
+      </div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:15px;font-weight:600;color:var(--text)">@refatjahanrakib</div>
+        <div style="font-size:12.5px;color:var(--muted);margin-top:0.2rem">Follow for research updates, field work, and ocean science</div>
+      </div>
+      <a href="https://x.com/refatjahanrakib" target="_blank"
+         style="flex-shrink:0;background:#000;color:#fff;border-radius:20px;padding:0.45rem 1.25rem;font-size:13px;font-weight:600;text-decoration:none;transition:opacity 0.2s"
+         onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">Follow</a>
+    </div>
   </div>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script>
   (function(){
-    function syncXTheme(theme) {
-      var el = document.getElementById('x-timeline-widget');
-      if (!el) return;
-      el.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
-      if (window.twttr && twttr.widgets) twttr.widgets.load(document.getElementById('x-timeline-wrap'));
-    }
-    var _orig = window.setTheme;
-    window.setTheme = function(t) { if (_orig) _orig(t); syncXTheme(t); };
-    // Apply current theme once twttr is ready
-    if (window.twttr) {
+    function initXWidget() {
+      if (!window.twttr) return;
       twttr.ready(function() {
-        syncXTheme(document.documentElement.getAttribute('data-theme') || 'light');
+        // Show the timeline wrap so twttr can process it
+        var wrap = document.getElementById('x-timeline-wrap');
+        if (wrap) wrap.style.display = 'block';
+        twttr.widgets.load(wrap);
+
+        // When timeline successfully renders, hide the follow card
+        twttr.events.bind('rendered', function() {
+          var card = document.getElementById('x-follow-card');
+          if (card) card.style.display = 'none';
+        });
       });
     }
+    // Run after widgets.js has had time to initialise
+    if (document.readyState === 'complete') { initXWidget(); }
+    else { window.addEventListener('load', initXWidget); }
+
+    // Sync widget theme with site light/dark toggle
+    var _orig = window.setTheme;
+    window.setTheme = function(t) {
+      if (_orig) _orig(t);
+      var el = document.getElementById('x-timeline-widget');
+      if (el) el.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
+      if (window.twttr && twttr.widgets) twttr.widgets.load(document.getElementById('x-timeline-wrap'));
+    };
   })();
   </script>
 
