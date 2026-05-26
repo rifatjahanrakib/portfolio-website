@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Copy-Item -Force \"d:\\\\Website\\\\rakib-website\\\\rakib-website\\\\images\\\\500710810_2703665619819001_6614278978805346321_n.jpg\" \"d:\\\\Website\\\\rakib-website\\\\rakib-website\\\\images\\\\imgPROFILE.jpg\")",
+      "WebSearch",
+      "PowerShell(git add index.html rakib-website/index.html)"
+    ]
+  }
+}
